@@ -48,6 +48,7 @@ Follow the documentation within Postman to test all available endpoints.
 [Postman Collection Link](https://assessment-9358.postman.co/workspace/ff4c42e9-f6df-4278-8fa9-c8db354c536c/collection/36416783-d660139c-26c8-45d5-a7e8-e2fa1e25dd92?action=share&source=copy-link&creator=36416783&active-environment=b7be4858-406d-4966-8045-4afc72c78189) <br><br>
 [Link to accept an invite for Postman Collection access](https://app.getpostman.com/join-team?invite_code=220c41e8fa5c464de890e90b6335ce88511ea74f3247c978bbdd75cd160f55e5)
 
+> Note: Ensure that the Development Environement is selected.
 --- 
 
 ## Running Tests and Viewing Coverage Reports
@@ -84,6 +85,16 @@ xdg-open htmlcov/index.html
 ```
 ---
 
+##  Custom management command to import jobs and freelancers from a CSV file.
+
+```freelancers_and_jobs.csv``` is present in the root directory.
+
+```bash
+ python manage.py import_jobs_and_freelancers freelancers_and_jobs.csv
+```
+
+---
+
 ## **Important Notes for Evaluators**
 
 Please consider the following points while evaluating the project:
@@ -104,5 +115,5 @@ Please consider the following points while evaluating the project:
      
 4. **Coverage Files Included**  
    - The project contains pre-generated coverage files to simplify the review process. You can view the test coverage by opening the provided HTML report (`htmlcov/index.html`).
-
+     
 > These points highlight the current state of the project for convenience during evaluation. They can be addressed in future to adhere to production-ready best practices.
