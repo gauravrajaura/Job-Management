@@ -1,0 +1,476 @@
+{
+	"info": {
+		"_postman_id": "d660139c-26c8-45d5-a7e8-e2fa1e25dd92",
+		"name": "Job management",
+		"description": "The system allows freelancers to register, view jobs, apply for jobs, and track their applications.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36416783",
+		"_collection_link": "https://assessment-9358.postman.co/workspace/ff4c42e9-f6df-4278-8fa9-c8db354c536c/collection/36416783-d660139c-26c8-45d5-a7e8-e2fa1e25dd92?action=share&source=collection_link&creator=36416783"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const token = jsonData.access;\r",
+									"pm.environment.set(\"access_token\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin@123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/token/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"token",
+								""
+							]
+						},
+						"description": "_Note : The Script is already present that will automatically set the access token for all the other apis on successfull response._"
+					},
+					"response": []
+				}
+			],
+			"description": "**Authentication** for APIs using Django Rest Framework's JWT."
+		},
+		{
+			"name": "Freelancer",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "full_name",
+									"value": "gaurav rajaura",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "gauravkumarrajaura@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "skills",
+									"value": "python, django",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/app/freelancers/register/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"app",
+								"freelancers",
+								"register",
+								""
+							]
+						},
+						"description": "Endpoint to create a new freelancer."
+					},
+					"response": []
+				},
+				{
+					"name": "Details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/app/freelancers/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"app",
+								"freelancers",
+								"1",
+								""
+							]
+						},
+						"description": "Endpoint to retrieve the details of a specific  \nfreelancer by ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Skills",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "skills",
+									"value": "python, django, css",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/app/freelancers/1/update-skills/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"app",
+								"freelancers",
+								"1",
+								"update-skills",
+								""
+							]
+						},
+						"description": "Endpoint to update a freelancer’s skills"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Jobs",
+			"item": [
+				{
+					"name": "Create Job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Software Dev",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Django Dev",
+									"type": "text"
+								},
+								{
+									"key": "required_skills",
+									"value": "python, django",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/app/jobs/create/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"app",
+								"jobs",
+								"create",
+								""
+							]
+						},
+						"description": "Endpoint for admin to create a job."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Jobs List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/app/jobs/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"app",
+								"jobs",
+								""
+							]
+						},
+						"description": "Endpoint to list all available jobs. The API contains Pagination."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Jobs ",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/app/jobs/filter/?skills=django, javascript",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"app",
+								"jobs",
+								"filter",
+								""
+							],
+							"query": [
+								{
+									"key": "skills",
+									"value": "django, javascript"
+								}
+							]
+						},
+						"description": "Endpoint to filter jobs based on a freelancer's skills."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Applications",
+			"item": [
+				{
+					"name": "Apply",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "freelancer",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "job",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "Applied",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/app/applications/apply/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"app",
+								"applications",
+								"apply",
+								""
+							]
+						},
+						"description": "Endpoint for a freelancer to apply for a job."
+					},
+					"response": []
+				},
+				{
+					"name": "View Applications",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/app/applications/freelancer/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"app",
+								"applications",
+								"freelancer",
+								"1",
+								""
+							]
+						},
+						"description": "Endpoint to view all applications of a freelancer."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Application Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "freelancer",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "job",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "Shortlisted",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/app/applications/1/update-status/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"app",
+								"applications",
+								"1",
+								"update-status",
+								""
+							]
+						},
+						"description": "Endpoint for admin to update the status of a job  \napplication."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
