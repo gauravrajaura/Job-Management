@@ -1,0 +1,8 @@
+freelancer_name,freelancer_email,freelancer_skills,job_title,job_description,job_skills
+John Doe,john.doe@example.com,"Python, Django, JavaScript",Software Developer,Develop web applications using Python and Django,"Python, Django, JavaScript"
+Jane Smith,jane.smith@example.com,"JavaScript, Node.js",Web Developer,Create and maintain websites with JavaScript and Node.js,"JavaScript, Node.js"
+Alice Johnson,alice.johnson@example.com,"Java, Spring",Backend Developer,Build RESTful APIs using Java and Spring,"Java, Spring"
+Bob Brown,bob.brown@example.com,"HTML, CSS",Frontend Developer,Design responsive user interfaces,"HTML, CSS"
+Charlie White,charlie.white@example.com,"Python, Data Science",Data Scientist,Analyze large datasets and build predictive models,"Python, Data Science"
+David Black,david.black@example.com,"JavaScript, React",Frontend Developer,Build single-page applications with React,"JavaScript, React"
+Emily Green,emily.green@example.com,"PHP, Laravel",Web Developer,Develop web applications using PHP and Laravel,"PHP, Laravel"
